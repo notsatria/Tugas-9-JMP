@@ -54,14 +54,30 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Handle register
-    public void registerUser(String name, String username, String password) {
+    public boolean registerUser(String name, String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
+
+
+        String checkQuery = "SELECT * FROM " + TABLE_User_SQLite + " WHERE " + COLUMN_USERNAME + " = ?";
+        Cursor cursor = db.rawQuery(checkQuery, new String[]{username});
+        if (cursor.getCount() > 0) {
+            // Username already exists, return or show an error message
+            cursor.close();
+            db.close();
+            return false;
+        }
+        cursor.close();
+
         String query = "INSERT INTO " + TABLE_User_SQLite + " (name, username, password) " +
                 "VALUES ( '" + name + "', '" + username + "', '" + password + "' )";
 
+
         Log.e("Query register", query);
+
         db.execSQL(query);
         db.close();
+
+        return true;
     }
 
     public boolean loginUser(String username, String password) {

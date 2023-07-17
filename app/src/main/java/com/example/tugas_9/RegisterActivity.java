@@ -51,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = etUsernameRegister.getText().toString();
                 String password = etPasswordRegister.getText().toString();
 
-                db.registerUser(name, username, password);
                 boolean registrationSuccessful = db.registerUser(name, username, password);
                 if (registrationSuccessful) {
                     Toast.makeText(RegisterActivity.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();

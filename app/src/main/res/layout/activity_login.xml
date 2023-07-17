@@ -29,7 +29,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etUsernameLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -37,6 +37,7 @@
         android:hint="Username"
         android:inputType="textPersonName"
         android:minHeight="50dp" />
+
 
     <TextView
         android:id="@+id/textView5"
@@ -47,7 +48,7 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -58,7 +59,7 @@
         android:minHeight="50dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -80,7 +81,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/btnTxtLogin"
+            android:id="@+id/btnTxtRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"

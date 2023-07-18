@@ -8,6 +8,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
     static  final String DATABASE_NAME = "catatanapp.db";
@@ -95,5 +98,68 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return result;
+    }
+
+    public boolean addCatatan(String judul, String konten) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "INSERT INTO " + TABLE_Catatan_SQLite + " (judul, konten) VALUES ('" +
+                judul + "', '" + konten + "')";
+
+        Log.e("Query Tambah Catatan", query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() != 0) {
+            result = true;
+        }
+
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+    public boolean deleteCatatan(String judul, String konten) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        boolean result = false;
+        String query = "DELETE FROM " + TABLE_Catatan_SQLite + " WHERE " + "judul = " +
+              judul + " AND  konten = " + konten;
+        Log.e("Query Hapus Catatan", query);
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() != 0) {
+            result = true;
+        }
+
+        cursor.close();
+        db.close();
+        return result;
+    }
+
+    public List<String[]> getCatatanList() {
+        List<String[]> listItemCatatan = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COLUMN_JUDUl_CATATAN + ", " + COLUMN_KONTEN_CATATAN +
+                " FROM " + TABLE_Catatan_SQLite;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int titleIndex = cursor.getColumnIndex(COLUMN_JUDUl_CATATAN);
+                int contentIndex = cursor.getColumnIndex(COLUMN_KONTEN_CATATAN);
+
+                String title = cursor.getString(titleIndex);
+                String content = cursor.getString(contentIndex);
+
+                String[] item = {title, content};
+                listItemCatatan.add(item);
+            } while (cursor.moveToNext());
+        }
+
+        if(cursor != null) {
+            cursor.close();
+        }
+
+        db.close();
+
+        return listItemCatatan;
     }
 }

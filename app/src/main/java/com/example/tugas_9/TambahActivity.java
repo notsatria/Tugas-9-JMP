@@ -29,8 +29,8 @@ public class TambahActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tambah);
 
         btnSubmit = findViewById(R.id.btnSubmit);
-        etNamaFile = findViewById(R.id.etNamaFile);
-        etKontenFile = findViewById(R.id.etKontenFile);
+        etNamaFile = findViewById(R.id.etJudulCatatan);
+        etKontenFile = findViewById(R.id.etKontenCatatan);
 
         if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
             btnSubmit.setEnabled(false);

@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Nama File"
+        android:text="Judul Catatan"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ems="10"
-        android:hint="Masukkan Nama File"
+        android:hint="Masukkan Judul Catatan"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
